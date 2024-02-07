@@ -1,0 +1,11 @@
+{
+  "name": "blueapp-backend",
+  "version": "1.0.0",
+  "description": "movil project",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node ./index"
+  },
+  "author": "Ana Juarez",
+  "license": "ISC"
+}
