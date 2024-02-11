@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { server } from "./app.js";
 import { io } from "./src/utils/socketServer.js";
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8008;
 const IP_SERVER = process.env.IP_SERVER || "localhost";
 const DB_USER = process.env.DB_USER || "admin";
 const DB_PASSWORD = process.env.DB_PASSWORD || "VY5EBwZ6wHFW3o1d";
@@ -16,7 +16,7 @@ mongoose.connect(mongoDbUrl)
             console.log("**************************************");
             console.log("******* Welcome the Blue App *********");
             console.log("**************************************");
-            console.log(`\nLevantado en: http://${IP_SERVER}:${PORT}\n`);
+            console.log(`\nLevantado en: http://${IP_SERVER}:${PORT}/api`);
 
             io.sockets.on("connection", (socket) => {
                 console.log("Nuevo usuario ha ingresado! 👋");
