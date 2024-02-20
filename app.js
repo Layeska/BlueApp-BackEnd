@@ -7,7 +7,7 @@ import { initSocketServer } from "./src/utils/socketServer.js";
 import { authRoutes } from "./src/routes/index.js"
 
 const app = express();
-export const server = http.createServer(app);
+const server = http.createServer(app);
 initSocketServer(server);
 
 //Configure Body Parser
@@ -17,8 +17,11 @@ app.use(bodyParser.json());
 // configuración de carpeta statica
 app.use(express.static("./src/uploads"));
 
-app.use(cors); //Config cors
-app.use(morgan("dev")); // config http dev
+app.use(cors()); // <-- Agregar paréntesis para invocar la función cors
+app.use(morgan("dev")); // <-- Invocar morgan con el parámetro "dev" para mostrar el log en el desarrollo
+
 
 //configurando route
 app.use("/api", authRoutes);
+
+export { server };
