@@ -5,6 +5,7 @@ const api = express.Router();
 
 api.post("/auth/register", AuthController.register);
 api.post("/auth/login", AuthController.login);
+api.post("/auth/refesh-access-token", AuthController.refreshAccessToken)
 
 
 export const authRoutes = api;

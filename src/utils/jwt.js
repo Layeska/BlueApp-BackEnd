@@ -20,7 +20,7 @@ function createAccessToket(user) {
 function createRefreshToken(user) {
     const expToken = new Date();
 
-    expToken.getMonth(expToken.getMonth() + 1);
+    expToken.setMonth(expToken.getMonth() + 1);
 
     const payload = {
         token_type: "refresh",
@@ -36,8 +36,22 @@ function decode(token) {
     return jsonwebtoken.decode(token, SECRET, true);
 }
 
+function hashExpiredToken(token) {
+    const t = decode(token);
+    console.log(t);
+    const { exp } = decode(token);
+    const currentDate = new Date().getTime();
+
+    if(exp <= currentDate) {
+   return true;
+    }
+
+    return false;
+}
+
 export const jwt = {
     createAccessToket,
     createRefreshToken,
-    decode
+    decode,
+    hashExpiredToken
 }
