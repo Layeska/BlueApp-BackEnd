@@ -62,20 +62,20 @@ function login(req, res) {
 }
 
 function refreshAccessToken(req, res) {
-  const { accessToken } = req.body;
+  const { refreshToken } = req.body;
 
   console.log(req.body);
 
-  if (!accessToken) {
+  if (!refreshToken) {
     res.status(400).send({ msg: "Token requerido!" });
   }
 
-  const hasExpired =  jwt.hashExpiredToken(accessToken);
+  const hasExpired =  jwt.hashExpiredToken(refreshToken);
   console.log(hasExpired)
-  
+
   if(hasExpired) res.status(400).send({ msg: "Token expirado"});
 
-  const { user_id } = jwt.decode(accessToken);
+  const { user_id } = jwt.decode(refreshToken);
 
   User.findById(user_id)
   .then((res) => {
@@ -84,8 +84,6 @@ function refreshAccessToken(req, res) {
     });
   })
   .catch(error => res.status(500).send({ msg: error.error}));
-
-  //res.status(200).send({ msg: "todo ok" });
 }
 
 export const AuthController = {

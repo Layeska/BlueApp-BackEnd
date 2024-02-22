@@ -43,7 +43,7 @@ function hashExpiredToken(token) {
     const currentDate = new Date().getTime();
 
     if(exp <= currentDate) {
-   return true;
+        return true;
     }
 
     return false;
