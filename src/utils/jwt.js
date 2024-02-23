@@ -38,7 +38,6 @@ function decode(token) {
 
 function hashExpiredToken(token) {
     const t = decode(token);
-    console.log(t);
     const { exp } = decode(token);
     const currentDate = new Date().getTime();
 

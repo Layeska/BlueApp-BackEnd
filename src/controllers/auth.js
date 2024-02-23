@@ -64,23 +64,20 @@ function login(req, res) {
 function refreshAccessToken(req, res) {
   const { refreshToken } = req.body;
 
-  console.log(req.body);
-
   if (!refreshToken) {
     res.status(400).send({ msg: "Token requerido!" });
   }
 
   const hasExpired =  jwt.hashExpiredToken(refreshToken);
-  console.log(hasExpired)
 
   if(hasExpired) res.status(400).send({ msg: "Token expirado"});
 
   const { user_id } = jwt.decode(refreshToken);
 
   User.findById(user_id)
-  .then((res) => {
+  .then((response) => {
     res.status(200).send({
-        accessToken: jwt.createAccessToket(res)
+        accessToken: jwt.createAccessToket(response)
     });
   })
   .catch(error => res.status(500).send({ msg: error.error}));
