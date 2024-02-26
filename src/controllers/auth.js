@@ -1,6 +1,6 @@
 import { User } from "../models/index.js";
 import bcrypt from "bcryptjs";
-import { jwt } from "../utils/jwt.js";
+import { jwt } from "../utils/index.js";
 
 function register(req, res) {
   console.log(req.body);

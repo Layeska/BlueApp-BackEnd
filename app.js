@@ -3,7 +3,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import http from "http";
-import { initSocketServer } from "./src/utils/socketServer.js";
+import { initSocketServer } from "./src/utils/index.js";
 import { authRoutes, userRoutes } from "./src/routes/index.js"
 
 const app = express();

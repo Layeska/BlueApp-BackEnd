@@ -1,9 +1,11 @@
 import express from "express";
+import multiparty from "connect-multiparty";
 import { UserController } from "../controllers/index.js";
 import { mdAuth } from "../middlewares/index.js";
-import multipart from "connect-multiparty";
 
-const mdUpload = multipart({ uploadDir: "../uploads/"});
+const mdUpload = multiparty({
+    uploadDir: "./uploads/avatar"
+});
 
 const api = express.Router();
 
