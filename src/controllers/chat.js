@@ -49,7 +49,13 @@ async function deleteChat(req, res) {
 }
 
 async function getById(req, res) {
-    res.status(200).send({msg: "ok"});
+    const chat_id = req.params.id;
+
+    Chat.findById(chat_id)
+        .populate("participant_one")
+        .populate("participant_two")
+        .then(resp => res.status(200).send(resp))
+        .catch(error => res.status(400).send({msg: "error"}));
 }
 
 
